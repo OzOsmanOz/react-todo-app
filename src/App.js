@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Form from "./Components/Form";
+import Todos from "./Components/Todos";
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -66,62 +68,26 @@ function App() {
       <div className="text-center my-5">
         <h4 className="fw-bold">My Todos</h4>
       </div>
-      <form onSubmit={handleSubmit} className="input-group mb-3">
-        <input
-          className="form-control"
-          placeholder="Type your Todos"
-          value={todoText}
-          onChange={(e) => setTodoText(e.target.value)}
-        />
-        <button
-          className={`btn btn-${isEdit === true ? "success" : "primary"}`}
-          type="submit"
-        >
-          {isEdit === true ? "Save" : "Add"}
-        </button>
-      </form>
+      <Form
+        handleSubmit={handleSubmit}
+        todoText={todoText}
+        setTodoText={setTodoText}
+        isEdit={isEdit}
+      />
       {todos.length === 0 ? (
         <div className="text-center my-5">
           <h5>Nothing to do yet</h5>
         </div>
       ) : (
         todos.map((item) => (
-          <div key={item.id}>
-            <div
-              className={`alert alert-${
-                item.isDone === false ? "secondary" : "success"
-              } d-flex justify-content-between align-items-center py-2`}
-              role="alert"
-            >
-              {item.text}
-              <div>
-                <button
-                  onClick={() => {
-                    setIsEdit(true);
-                    setEditTodoId(item.id);
-                    setTodoText(item.text);
-                  }}
-                  className="btn btn-sm btn-success py-0"
-                >
-                  Edit
-                </button>
-                <button
-                  onClick={() => handleDelete(item.id)}
-                  className="btn btn-sm btn-danger py-0 mx-1"
-                >
-                  Delete
-                </button>
-                <button
-                  className={`btn btn-sm btn-${
-                    item.isDone === false ? "secondary" : "success"
-                  } py-0`}
-                  onClick={() => changeIsDone(item.id)}
-                >
-                  {item.isDone === false ? "Done" : "UnDone"}
-                </button>
-              </div>
-            </div>
-          </div>
+          <Todos
+            item={item}
+            handleDelete={handleDelete}
+            setIsEdit={setIsEdit}
+            setEditTodoId={setEditTodoId}
+            setTodoText={setTodoText}
+            changeIsDone={changeIsDone}
+          />
         ))
       )}
     </div>
