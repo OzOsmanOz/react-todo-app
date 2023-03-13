@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Form from "./Components/Form";
 import Todos from "./Components/Todos";
 
@@ -7,6 +7,16 @@ function App() {
   const [todoText, setTodoText] = useState("");
   const [isEdit, setIsEdit] = useState(false);
   const [editTodoId, setEditTodoId] = useState("");
+
+  useEffect(() => {
+    const todosFromLocalStorage = localStorage.getItem("todos");
+    console.log("todoFromLocalStorage", todosFromLocalStorage);
+    if (todosFromLocalStorage === null) {
+      localStorage.setItem("todos", JSON.stringify([]));
+    } else {
+      setTodos(JSON.parse(todosFromLocalStorage));
+    }
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,6 +42,10 @@ function App() {
 
       const filteredEdit = todos.filter((todo) => todo.id !== editTodoId);
       setTodos([...filteredEdit, newEditTodo]);
+      localStorage.setItem(
+        "todos",
+        JSON.stringify([...filteredEdit, newEditTodo])
+      );
       setTodoText("");
       setIsEdit(false);
     } else {
@@ -41,6 +55,7 @@ function App() {
         isDone: false,
       };
       setTodos([...todos, newTodo]);
+      localStorage.setItem("todos", JSON.stringify([...todos, newTodo]));
       setTodoText("");
     }
   };
@@ -55,12 +70,17 @@ function App() {
     const changedTodoFilter = todos.filter((todo) => todo.id !== id);
 
     setTodos([...changedTodoFilter, newChangeTodo]);
+    localStorage.setItem(
+      "todos",
+      JSON.stringify([...changedTodoFilter, newChangeTodo])
+    );
   };
 
   const handleDelete = (id) => {
     const deletedTodo = todos.filter((todo) => todo.id !== id);
     console.log("deletedTodo", deletedTodo);
     setTodos(deletedTodo);
+    localStorage.setItem("todos", JSON.stringify(deletedTodo));
   };
 
   return (
