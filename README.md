@@ -2,6 +2,13 @@
 
 https://user-images.githubusercontent.com/107813778/224635972-ac69d79b-c4fe-4502-a0f3-0c0e7739fcbe.mov
 
+## Used technologies
+![htmlicon](https://user-images.githubusercontent.com/107813778/206437359-a00e2847-d363-4e31-8f16-debac10b4498.png)
+![cssicon](https://user-images.githubusercontent.com/107813778/206437354-328a59d7-6082-4831-955b-38de2035ee2a.png)
+![bootstrapicon](https://user-images.githubusercontent.com/107813778/206437351-3847eaba-6b04-423e-8e92-59a6707a4429.png)
+![jsicon](https://user-images.githubusercontent.com/107813778/206437362-28f878e9-b0f5-412f-99c2-bdc6af76a9fc.png)
+![reacticon](https://user-images.githubusercontent.com/107813778/206437364-37fe1387-a98d-4f48-bc4e-6a4ff5d8619b.png)
+
 
 
 # Getting Started with Create React App
